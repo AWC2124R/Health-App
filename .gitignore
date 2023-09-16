@@ -1,0 +1,3 @@
+.env
+/react_application/node_modules
+/GPT4/__pycache__
