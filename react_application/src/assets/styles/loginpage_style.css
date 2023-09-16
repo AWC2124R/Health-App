@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'GEOMATRIX';
+    src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
+         url('../fonts/GEOMATRIX.woff') format('woff'),
+         url('../fonts/GEOMATRIX.woff2') format('woff2');
+}
+
+.login-section-container {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-container {
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0px;
+    background: linear-gradient(to right, #007BFF, #00FFA3);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'GEOMATRIX';
+}
+
+.login-form button:hover {
+    background: linear-gradient(to right, #0056b3, #009973);
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0px;
+    background: linear-gradient(to left, #007BFF, #00FFA3);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'GEOMATRIX';
+}
+
+.register-button:hover {
+    background: linear-gradient(to left, #0056b3, #009973);
+}
+
+.error-message {
+    text-align: center;
+    margin: 10px;
+    color: rgba(255, 0, 0, 0.521);
+}

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
 
-function App() {
+import LoginPage from './components/LoginPage'
+import RegisterPage from './components/RegisterPage'
+import MainPage from './components/MainPage'
+import InitialSurveyPage from './components/InitialSurveyPage'
+
+function Test() {
   const [slider1, setSlider1] = useState(0);
   const [slider2, setSlider2] = useState(0);
   const [slider3, setSlider3] = useState(0);
@@ -62,4 +67,36 @@ function App() {
   );
 }
 
-export default App;
+function Hub() {
+  let displayPage = <LoginPage />;
+  const [currentPage, setCurrentPage] = useState('LP');
+  const [pageUsername, setPageUsername] = useState('NA');
+
+  switch(currentPage){
+    case 'LP':
+      displayPage = <LoginPage setCurrentPage={setCurrentPage} setPageUsername={setPageUsername}/>;
+      break;
+    case 'RP':
+      displayPage = <RegisterPage setCurrentPage={setCurrentPage} />;
+      break;
+    case 'ISP':
+      displayPage = <InitialSurveyPage setCurrentPage={setCurrentPage} pageUsername={pageUsername}/>;
+      break;
+    case 'MP':
+      displayPage = <div>
+                     <MainPage />
+                    </div>;
+      break;
+    default:
+      break;
+  }
+
+  return (
+    <>
+      <div className='main-background'></div>
+      <div>{displayPage}</div>
+    </>
+  );
+}
+
+export default Hub;

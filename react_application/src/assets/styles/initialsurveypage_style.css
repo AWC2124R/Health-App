@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'GEOMATRIX';
+    src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
+         url('../fonts/GEOMATRIX.woff') format('woff'),
+         url('../fonts/GEOMATRIX.woff2') format('woff2');
+}
+
+.survey-section-container {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.survey-container {
+    width: 300px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.survey-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.survey-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.survey-form input,
+.survey-form select,
+.survey-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.survey-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0px;
+    background: linear-gradient(to right, #007BFF, #00FFA3);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'GEOMATRIX';
+}
+
+.survey-form button:hover {
+    background: linear-gradient(to right, #0056b3, #009973);
+}

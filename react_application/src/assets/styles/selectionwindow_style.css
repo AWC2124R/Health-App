@@ -1,0 +1,66 @@
+@font-face {
+    font-family: 'ZECTOR';
+    src: url('../fonts/ZECTOR.ttf') format('truetype'),
+         url('../fonts/ZECTOR.woff') format('woff'),
+         url('../fonts/ZECTOR.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'GEOMATRIX';
+    src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
+         url('../fonts/GEOMATRIX.woff') format('woff'),
+         url('../fonts/GEOMATRIX.woff2') format('woff2');
+}
+
+:root {
+    --namecard-width: 20vw;
+    --namecard-height: 15vw;
+}
+
+.selectionwindow-background {
+    position: absolute;
+
+    left: 0vw;
+    top: var(--namecard-height);
+
+    width: var(--namecard-width);
+    height: calc(100vh - var(--namecard-height));
+    background: #F2F2F2
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    width: var(--namecard-width);
+
+    max-height: calc(100vh - var(--namecard-height));
+}
+
+.button-item {
+    display: block;
+    margin: 0px 0px;
+    padding: 3.5vw 0px;
+
+    width: var(--namecard-width);
+
+    color: rgb(0, 0, 0);
+    border: none;
+    transition: background-color 0.3s ease;
+
+    font-family: 'ZECTOR';
+    font-weight: 100;
+    font-size: 1.5vw;
+}
+
+.button-item:hover {
+    background-color: #00000033;
+  }
+  
+  .button-item:active {
+    background-color: #0000005e;
+  }

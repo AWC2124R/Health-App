@@ -1,0 +1,129 @@
+@font-face {
+    font-family: 'ZECTOR';
+    src: url('../fonts/ZECTOR.ttf') format('truetype'),
+         url('../fonts/ZECTOR.woff') format('woff'),
+         url('../fonts/ZECTOR.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'GEOMATRIX';
+    src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
+         url('../fonts/GEOMATRIX.woff') format('woff'),
+         url('../fonts/GEOMATRIX.woff2') format('woff2');
+}
+
+:root {
+    --namecard-width: 20vw;
+    --namecard-height: 15vw;
+}
+
+.namecard-background {
+    width: var(--namecard-width);
+    height: var(--namecard-height);
+
+    background: linear-gradient(-45deg, #AEE2FF, #B799FF);
+}
+
+.logo {
+    position: absolute;
+    margin: 0;
+
+    left: calc(var(--namecard-width) / 2 - 6.5vw);
+    top: 0.9vw;
+
+    width: 13vw;
+}
+
+.credit-container{
+    position: absolute;
+    text-align: center;
+
+    left: 0;
+    top: 0;
+}
+
+.credit {
+    position: absolute;
+    margin: 0;
+
+    left: 0;
+    top: 8.5vw;
+
+    width: calc(var(--namecard-width));
+
+    font-family: 'GEOMATRIX';
+    font-weight: 100;
+    font-size: 0.85vw;
+}
+
+.date-time-container {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+}
+
+.date {
+    position: absolute;
+    text-align: left;
+    padding: 5px;
+
+    left: 1.75vw;
+    top: 9.5vw;
+
+    width: calc(var(--namecard-width) - 1.75vw - 10px);
+
+    font-family: 'ZECTOR';
+    font-size: 1.44vw;
+
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.time {
+    position: absolute;
+    text-align: right;
+    padding: 5px;
+
+    left: 0;
+    top: 9.5vw;
+
+    width: calc(var(--namecard-width) - 1.75vw - 10px);
+
+    font-family: 'ZECTOR';
+    font-size: 1.44vw;
+
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.weather-container {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+}
+
+.weather {
+    position: absolute;
+    text-align: left;
+
+    left: 1.25vw;
+    top: 12vw;
+
+    width: calc(var(--namecard-width) - 1.25vw);
+
+    font-family: 'ZECTOR';
+    font-size: 0.95vw;
+}
+
+.temperature {
+    position: absolute;
+    text-align: right;
+
+    left: 0;
+    top: 12vw;
+
+    width: calc(var(--namecard-width) - 1.25vw);
+
+    font-family: 'ZECTOR';
+    font-size: 0.95vw;
+}
