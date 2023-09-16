@@ -5,6 +5,7 @@ import LoginPage from './components/LoginPage'
 import RegisterPage from './components/RegisterPage'
 import MainPage from './components/MainPage'
 import InitialSurveyPage from './components/InitialSurveyPage'
+import DailySurveyPage from './components/DailySurveyPage';
 
 function Test() {
   const [slider1, setSlider1] = useState(0);
@@ -81,6 +82,9 @@ function Hub() {
       break;
     case 'ISP':
       displayPage = <InitialSurveyPage setCurrentPage={setCurrentPage} pageUsername={pageUsername}/>;
+      break;
+    case 'DSP':
+      displayPage = <DailySurveyPage />;
       break;
     case 'MP':
       displayPage = <div>

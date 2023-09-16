@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
-const {UserLogin, UserProfile} = require('./Models/user'); 
+const {UserLogin, UserProfile, UserMeals} = require('./Models/user'); 
 const bcrypt = require('bcrypt');
 
 require('dotenv').config();
@@ -53,8 +53,11 @@ app.post('/register', async (req, res) => {
 
   const hashedPassword = bcrypt.hashSync(password, 10); // 10 is the saltRounds
   const newUser = new UserLogin({ username, password: hashedPassword });
+  const newUserMeal = new UserMeals({ username: username });
 
   await newUser.save();
+
+  await newUserMeal.save();
 
   return res.json({ message: 'User Registered.' });
 });
@@ -71,7 +74,7 @@ app.post('/checkprofile', async (req, res) => {
   return res.json({ message: 'Profile found.' });
 });
 
-app.post('getprofile', async (req, res) => {
+app.post('/getprofile', async (req, res) => {
   const { username } = req.body;
 
   const userProfile = await UserProfile.findOne({ username });
@@ -92,6 +95,58 @@ app.post('/createprofile', async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(400).json({message: 'UserProfile validation failed', error: error.message});
+  }
+});
+
+function hasLoggedInToday(lastLogin) {
+  if (!lastLogin) {
+    return false;
+  }
+
+  const today = new Date();
+  const loginDate = new Date(lastLogin);
+
+  return loginDate.getDate() === today.getDate() &&
+    loginDate.getMonth() === today.getMonth() &&
+    loginDate.getFullYear() === today.getFullYear();
+}
+
+app.post('/checklogintoday', async (req, res) => {
+  const { username } = req.body;
+
+  try {
+    const user = await UserLogin.findOne({ username });
+    if (user) {
+      const loggedInToday = hasLoggedInToday(user.lastLogin);
+      return res.json({ message: loggedInToday });
+    } else {
+      return res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+app.post('/addmealentry', async (req, res) => {
+  try {
+    const { username, date, mealEntry } = req.body;
+    
+    const userMeals = await UserMeals.findOne({ username });
+    if (!userMeals) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    if (!userMeals.mealsByDate.has(date)) {
+      userMeals.mealsByDate.set(date, []);
+    }
+
+    userMeals.mealsByDate.get(date).push(mealEntry);
+
+    await userMeals.save();
+    
+    res.status(200).json({ message: 'Meal entry added successfully' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 

@@ -21,10 +21,18 @@ export default function LoginPage({setCurrentPage, setPageUsername}) {
             setPageUsername(username);
             
             const resProfile = await axios.post('http://localhost:5000/checkprofile', { username });
-            console.log(resProfile.data.message);
-            console.log(resProfile.data.message === 'No Profile.');
-            if(resProfile.data.message === 'Profile found.') setCurrentPage('MP');
-            if(resProfile.data.message === "No profile.") setCurrentPage('ISP');
+
+            const resLoggedIn = await axios.post('http://localhost:5000/checklogintoday', { username });
+            if(resProfile.data.message === 'Profile found.'){
+                if(resLoggedIn.data.message == true){
+                    setCurrentPage('MP');
+                } else {
+                    setCurrentPage('DSP');
+                }
+            }
+            if(resProfile.data.message === "No profile."){
+                setCurrentPage('ISP');
+            }
         } catch (error) {
             setErrorMessage(error.response.data.message);
         }

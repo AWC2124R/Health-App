@@ -30,7 +30,7 @@ export default function InitialSurveyPage({setCurrentPage, pageUsername}) {
         try {
             const resUpdateProfile = await axios.post('http://localhost:5000/createprofile', { username: pageUsername, age, gender, height, weight, ethnicity, goals });
             console.log(resUpdateProfile.data.message);
-            setCurrentPage('MP');
+            setCurrentPage('DSP');
         } catch (error) {
           
         }
