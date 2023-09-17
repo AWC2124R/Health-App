@@ -1,0 +1,56 @@
+@font-face {
+    font-family: 'GEOMATRIX';
+    src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
+         url('../fonts/GEOMATRIX.woff') format('woff'),
+         url('../fonts/GEOMATRIX.woff2') format('woff2');
+  }
+  
+  .customCalendarWeekly {
+    position: absolute;
+    top: 9vh;
+    left: 25vw;
+  
+    width: 67.9vw;
+    height: 47vh;
+    background-color: #ebf2fa;
+    border: 0px;
+    box-shadow: 10px 10px lightblue;
+  }
+  
+  .customCalendarWeekly .react-calendar__tile {
+    width: 70px;
+    height: 6vh;
+  }
+  
+  .uniqueBoxContainer {
+    position: absolute;
+    top: 60vh; /* Adjust the value as necessary */
+    left: 25vw; /* Adjust the value as necessary */
+    width: 67.8vw; /* Adjustable width */
+    height: 30vh; /* Adjustable height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ebf2fa;
+    box-shadow: 10px 10px lightblue;
+  }
+  
+  .uniqueBoxContent {
+    font-family: 'Arial, sans-serif';
+    font-size: 2.7vh; /* Adjustable font size */
+    color: #333;
+    text-align: center;
+    font-family: 'GEOMATRIX'
+  }
+  
+  .button-call-gpt {
+    background-color: #679436; /* Adjust as necessary */
+    color: white; /* Adjust as necessary */
+    border: none; /* Adjust as necessary */
+    font-size: 16px; /* Adjust as necessary */
+    cursor: pointer; /* Changes the cursor to a hand icon when hovering over the button */
+  }
+  
+  .button-call-gpt:hover {
+    background-color: #a5be00; /* Adjust as necessary; Darker shade for hover effect */
+  }

@@ -128,6 +128,7 @@ function MealData({data, setData, pageUsername, date}) {
 export default function Daily({pageUsername}) {
   const [value, onChange] = useState(new Date());
   const [data, setData] = useState("");
+  const [highlightData, setHighlightData] = useState("");
   const [buttonPressed, setButtonPressed] = useState(false);
   const [outString, setOutString] = useState("");
 
@@ -174,6 +175,16 @@ export default function Daily({pageUsername}) {
   };
 
   useEffect(() => {
+    const fetchDataHighlight = async () => {
+      try {
+        const response = await axios.post('http://localhost:5000/getmealentry', { username: pageUsername });
+        setHighlightData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchDataHighlight();
     fetchData(value);
   }, [value]);
 
@@ -187,10 +198,15 @@ export default function Daily({pageUsername}) {
           fetchData(value);
         }}
         className="customCalendar"
+        tileClassName={({date, view}) => {
+          if(view === 'month' && highlightData[formatDate(date)] && !(formatDate(date) === formatDate(new Date()))){
+            return 'highlight';
+          }
+        }}
       />
       <div className="uniqueBoxContainer">
         <div className="uniqueBoxContent">
-          {buttonPressed ? <p>{outString.replace(/"/g, '')}</p> : <button className='button-call-gpt' onClick={fetchDataPython}>GPT Assessment</button>}
+          {buttonPressed ? <p>{outString.replace(/"/g, '')}</p> : <button className='button-call-gpt' onClick={fetchDataPython}>Get Feedback on Day</button>}
         </div>
       </div>
       {data === undefined || Object.keys(data).length === 0  ? <MealEntryComponent pageUsername={pageUsername} date={value}/> : <MealData data={data} setData={setData} pageUsername={pageUsername} date={value}/>}

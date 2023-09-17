@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 
 import './../assets/styles/namecard_style.css'
 import './../assets/styles/selectionwindow_style.css'
+import './../assets/styles/mainpage_style.css'
 
 import Welcome from './modules/Welcome'
 import Daily from './modules/Daily'
@@ -11,7 +12,7 @@ import Settings from './modules/Settings'
 
 import logo from './../assets/images/WebsiteLogo.png'
 
-function NameCard() {
+function NameCard({pageUsername}) {
     const [date, setDate] = useState(new Date());
   
     function refreshClock() {
@@ -43,9 +44,9 @@ function NameCard() {
             <img className='logo' alt='Logo' src={logo}></img>
     
             <div className='credit-container'>
-                <p className='credit'></p>
+                <p className='credit'>You are logged in as: {pageUsername}</p>
             </div>
-            
+
             <div className='date-time-container'>
                 <p className='date'>{formatDate(date)}</p>
                 <p className='time'>{date.toLocaleTimeString('it-IT')}</p>
@@ -72,35 +73,47 @@ function SelectionWindow({handleModuleChange}) {
 }
 
 export default function MainPage({pageUsername, setCurrentPage}) {
-    let displayModule = <Welcome />;
-    const [currentModule, setCurrentModule] = useState('TDL');
+    const [currentModule, setCurrentModule] = useState('WELCOME');
+  const [displayModule, setDisplayModule] = useState(<Welcome />);
+  const [fadeClass, setFadeClass] = useState('fadeIn');
 
-    switch(currentModule){
+  useEffect(() => {
+    setFadeClass('fadeOut');
+    const timer = setTimeout(() => {
+      let newDisplayModule;
+      switch(currentModule){
         case 'WELCOME':
-            displayModule = <Welcome />;
-            break;
+          newDisplayModule = <Welcome />;
+          break;
         case 'DAILY REVIEW':
-            displayModule = <Daily pageUsername={pageUsername} />;
-            break;
+          newDisplayModule = <Daily pageUsername={pageUsername} />;
+          break;
         case 'WEEKLY REVIEW':
-            displayModule = <Weekly />;
-            break;
+          newDisplayModule = <Weekly pageUsername={pageUsername} />;
+          break;
         case 'SETTINGS':
-            displayModule = <Settings setCurrentPage={setCurrentPage}/>;
-            break;
+          newDisplayModule = <Settings setCurrentPage={setCurrentPage} />;
+          break;
         case 'PROFILE':
-            displayModule = <Profile pageUsername={pageUsername}/>;
+          newDisplayModule = <Profile pageUsername={pageUsername} />;
+          break;
         default:
-            break;
-    }
+          break;
+      }
+      setDisplayModule(newDisplayModule);
+      setFadeClass('fadeIn');
+    }, 150); // This timeout should match the transition duration defined in your CSS
 
-    return (
-        <div>
-            <NameCard />
-            <SelectionWindow handleModuleChange={setCurrentModule} />
-            <div>
-                {displayModule}
-            </div>
-        </div>
-    );
+    return () => clearTimeout(timer); // Clean up the timer to prevent memory leaks
+  }, [currentModule]);
+
+  return (
+    <div>
+      <NameCard pageUsername={pageUsername}/>
+      <SelectionWindow handleModuleChange={setCurrentModule} />
+      <div className={`fadeTransition ${fadeClass}`}>
+        {displayModule}
+      </div>
+    </div>
+  );
 }

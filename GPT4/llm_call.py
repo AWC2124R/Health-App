@@ -15,7 +15,7 @@ BASE_PROMPT = """
                 Dinner: {}, satiety rating {}
                 Snacks: {}, satiety rating {}
 
-                You are going to write a response that will be featured in a health app. Taking into account what the user has eaten so far in the week,
+                You are going to write a response that will be featured in a health app. Taking into account what the user has eaten so far in the week and the nutrient information of those foods(protein, carbs, fat, etc),
                 give them a one sentence dietary tip for the day. For example, if the user reported eating a lot of desserts at a family gathering,
                 tell them "Since you have already consumed a high number of carbohydrates this week, try to avoid sugary splurges for the next few days."
                 Essentially, point out a poor dietary choice they made in the day, if they made one. In addition, take the following user's health data

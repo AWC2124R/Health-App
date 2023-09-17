@@ -22,6 +22,10 @@
   height: 6vh;
 }
 
+.highlight {
+  background-color: rgb(255, 222, 164);
+}
+
 .uniqueBoxContainer {
   position: absolute;
   top: 60vh; /* Adjust the value as necessary */
@@ -40,7 +44,8 @@
   font-size: 2.7vh; /* Adjustable font size */
   color: #333;
   text-align: center;
-  font-family: 'GEOMATRIX'
+  font-family: 'GEOMATRIX';
+  width: 66vw;
 }
 
 table {

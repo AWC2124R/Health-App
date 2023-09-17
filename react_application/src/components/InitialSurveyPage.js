@@ -40,7 +40,7 @@ export default function InitialSurveyPage({setCurrentPage, pageUsername}) {
         <div className="survey-section-container">
           <div className="survey-container">
             <form onSubmit={handleSubmit} className="survey-form">
-              <h2>Survey</h2>
+              <h2>Initial Survey</h2>
               <div>
                 <label>
                   Age:

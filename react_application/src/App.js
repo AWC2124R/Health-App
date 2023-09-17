@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import LoginPage from './components/LoginPage'
@@ -8,36 +8,49 @@ import InitialSurveyPage from './components/InitialSurveyPage'
 import DailySurveyPage from './components/DailySurveyPage';
 
 function Hub() {
-  let displayPage = <LoginPage />;
   const [currentPage, setCurrentPage] = useState('LP');
   const [pageUsername, setPageUsername] = useState('NA');
+  const [displayPage, setDisplayPage] = useState(<LoginPage />);
+  const [fadeClass, setFadeClass] = useState('fadeIn');
 
-  switch(currentPage){
-    case 'LP':
-      displayPage = <LoginPage setCurrentPage={setCurrentPage} setPageUsername={setPageUsername}/>;
-      break;
-    case 'RP':
-      displayPage = <RegisterPage setCurrentPage={setCurrentPage} />;
-      break;
-    case 'ISP':
-      displayPage = <InitialSurveyPage setCurrentPage={setCurrentPage} pageUsername={pageUsername}/>;
-      break;
-    case 'DSP':
-      displayPage = <DailySurveyPage setCurrentPage={setCurrentPage} pageUsername={pageUsername}/>;
-      break;
-    case 'MP':
-      displayPage = <div>
-                     <MainPage pageUsername={pageUsername} setCurrentPage={setCurrentPage}/>
-                    </div>;
-      break;
-    default:
-      break;
-  }
+  useEffect(() => {
+    setFadeClass('fadeOut');
+    const timer = setTimeout(() => {
+      let newDisplayPage;
+      switch(currentPage){
+        case 'LP':
+          newDisplayPage = <LoginPage setCurrentPage={setCurrentPage} setPageUsername={setPageUsername}/>;
+          break;
+        case 'RP':
+          newDisplayPage = <RegisterPage setCurrentPage={setCurrentPage} />;
+          break;
+        case 'ISP':
+          newDisplayPage = <InitialSurveyPage setCurrentPage={setCurrentPage} pageUsername={pageUsername}/>;
+          break;
+        case 'DSP':
+          newDisplayPage = <DailySurveyPage setCurrentPage={setCurrentPage} pageUsername={pageUsername}/>;
+          break;
+        case 'MP':
+          newDisplayPage = <div>
+                            <MainPage pageUsername={pageUsername} setCurrentPage={setCurrentPage}/>
+                           </div>;
+          break;
+        default:
+          break;
+      }
+      setDisplayPage(newDisplayPage);
+      setFadeClass('fadeIn');
+    }, 300); // Adjust the time to match your transition duration
+
+    return () => clearTimeout(timer); // Prevent memory leaks
+  }, [currentPage, pageUsername]);
 
   return (
     <>
       <div className='main-background'></div>
-      <div>{displayPage}</div>
+      <div className={`fadeTransition ${fadeClass}`}>
+        {displayPage}
+      </div>
     </>
   );
 }
