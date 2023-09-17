@@ -34,9 +34,8 @@
   }
   
   .text-welcome-page {
-    background-color: rgba(169, 169, 169, 0.272);
+    background-color: rgba(169, 169, 169, 0.231);
     padding: 20px 40px;
-    border-radius: 25px;
     font-size: 2rem;
     text-align: center;
   }

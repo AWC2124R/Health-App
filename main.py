@@ -12,12 +12,13 @@ def index():
 @app.route('/callGPT', methods=['POST'])
 def get_data():
     data = flask.request.get_json()
-    arg1 = str(data.get('arg1'))
-    arg2 = str(data.get('arg2'))
-    arg3 = str(data.get('arg3'))
+    print(data)
 
-    response = llm_call.call_gpt4([arg1, arg2, arg3])
-    print(response)
+    response = llm_call.call_gpt4([data['breakfast']['meal'], data['breakfast']['satiety'],
+                                   data['lunch']['meal'], data['lunch']['satiety'],
+                                   data['dinner']['meal'], data['dinner']['satiety'],
+                                   data['snack']['meal'], data['snack']['satiety'],
+                                   data['age'], data['gender'], data['height'], data['weight'], data['ethnicity']])
     data = {"message": response}
     return flask.jsonify(data)
 

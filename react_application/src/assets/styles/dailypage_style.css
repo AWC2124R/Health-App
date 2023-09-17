@@ -8,15 +8,17 @@
 .customCalendar {
   position: absolute;
   top: 9vh;
-  left: 48vw;
+  left: 56vw;
 
-  width: 45vw;
+  width: 36.9vw;
   height: 47vh;
+  background-color: #c3c3c31c;
+  border: 0px;
 }
 
 .customCalendar .react-calendar__tile {
   width: 70px;
-  height: 7vh;
+  height: 6vh;
 }
 
 .uniqueBoxContainer {
@@ -28,13 +30,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
-  border: 1px solid #8e8e8e;
+  background-color: #c3c3c31c;
+  border: 0px solid #8e8e8e;
 }
 
 .uniqueBoxContent {
   font-family: 'Arial, sans-serif';
-  font-size: 2vh; /* Adjustable font size */
+  font-size: 2.7vh; /* Adjustable font size */
   color: #333;
   text-align: center;
   font-family: 'GEOMATRIX'
@@ -44,8 +46,8 @@ table {
   position: absolute;
   top: 9vh;
   left: 25vw;
-  height: 47vh;
-  width: 20vw;
+  height: 40vh;
+  width: 27vw;
   border-collapse: collapse;
   font-family: 'GEOMATRIX';
   background-color: #ffffff;
@@ -60,4 +62,82 @@ th, td {
 
 th {
   background-color: #ffffff;
+}
+
+.meal-entry-form {
+  position: absolute;
+  top: 9vh;
+  left: 25vw;
+  height: 40vh;
+  width: 25vw;
+  background-color: #c3c3c31c;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meal-entry-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.meal-entry {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.5em;
+  width: 100%;
+}
+
+.meal-time {
+  margin-right: 1em;
+  font-weight: bold;
+  flex: 1;
+}
+
+.meal-input,
+.satiety-input {
+  margin: 0 0.5em;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100px;
+  flex: 2;
+}
+
+.meal-input::placeholder {
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+.submit-button {
+  padding: 0.5em 1em;
+  background-color: #c3c3c3c4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.submit-button:hover {
+  background-color: #b5b5b5;
+}
+
+.buttonStyle {
+  position: absolute;
+  top: 50vh; /* Adjust as necessary */
+  left: 32.7vw; /* Adjust as necessary */
+  width: 10vw; /* Adjust as necessary */
+  height: 50px; /* Adjust as necessary */
+  background-color: #9d9d9d; /* Adjust as necessary */
+  color: white; /* Adjust as necessary */
+  border: none; /* Adjust as necessary */
+  font-size: 16px; /* Adjust as necessary */
+  cursor: pointer; /* Changes the cursor to a hand icon when hovering over the button */
+}
+
+.buttonStyle:hover {
+  background-color: #828282; /* Adjust as necessary; Darker shade for hover effect */
 }

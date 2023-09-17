@@ -6,93 +6,13 @@ import axios from 'axios'
 
 import './../../assets/styles/dailypage_style.css'
 
-function Test() {
-  const [slider1, setSlider1] = useState(0);
-  const [slider2, setSlider2] = useState(0);
-  const [slider3, setSlider3] = useState(0);
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch('http://100.69.245.221:5000/callGPT', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ arg1: slider1, arg2: slider2, arg3: slider3 })
-      });
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  return (
-    <div className="app">
-      <div className="slider-container">
-        <label>Slider 1: {slider1}</label>
-        <input 
-          type="range" 
-          min="0" 
-          max="10" 
-          value={slider1} 
-          onChange={(e) => setSlider1(e.target.value)} 
-          className="slider"
-        />
-      </div>
-      <div className="slider-container">
-        <label>Slider 2: {slider2}</label>
-        <input 
-          type="range" 
-          min="0" 
-          max="10" 
-          value={slider2} 
-          onChange={(e) => setSlider2(e.target.value)} 
-          className="slider"
-        />
-      </div>
-      <div className="slider-container">
-        <label>Slider 3: {slider3}</label>
-        <input 
-          type="range" 
-          min="0" 
-          max="10" 
-          value={slider3} 
-          onChange={(e) => setSlider3(e.target.value)} 
-          className="slider"
-        />
-      </div>
-      <button onClick={fetchData}>Fetch Data</button>
-    </div>
-  );
-}
-
-function MealData({data}) {
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>Meal Time</th>
-          <th>Meal</th>
-          <th>Satiety Level</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.entries(data).map(([mealTime, { meal, satiety }]) => (
-          <tr key={mealTime}>
-            <td>{mealTime.charAt(0).toUpperCase() + mealTime.slice(1)}</td>
-            <td>{meal}</td>
-            <td>{satiety}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
-
-export default function Daily({pageUsername}) {
-  const [value, onChange] = useState(new Date());
-  const [data, setData] = useState("");
+function MealEntryComponent({pageUsername, date}) {
+  const [data, setData] = useState({
+    breakfast: { meal: '', satiety: '1' },
+    lunch: { meal: '', satiety: '1' },
+    dinner: { meal: '', satiety: '1' },
+    snack: { meal: '', satiety: '1' },
+  });
 
   const formatDate = (date) => {
     const yyyy = date.getFullYear();
@@ -100,17 +20,156 @@ export default function Daily({pageUsername}) {
     const dd = String(date.getDate()).padStart(2, '0');
     
     return `${yyyy}-${mm}-${dd}`;
-};
+  };
+
+  const handleInputChange = (mealTime, field, value) => {
+    setData(prevData => ({
+      ...prevData,
+      [mealTime]: {
+        ...prevData[mealTime],
+        [field]: value,
+      },
+    }));
+  };
+
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    const dateString = formatDate(date);
+
+    const dataJSON = {
+        username: pageUsername,
+        date: dateString,
+        mealEntry: data,
+    };
+    console.log(dataJSON);
+    try {
+      console.log("HELLO");
+      const response = await axios.post('http://localhost:5000/addmealentry', dataJSON);
+      console.log("HELLO");
+    } catch (error) {
+      console.error('Error:', error);
+  }
+  };
+
+  return (
+    <form className="meal-entry-form" onSubmit={handleSubmit}>
+      <div className="meal-entry-container">
+        {Object.entries(data).map(([mealTime, { meal, satiety }]) => (
+          <div key={mealTime} className="meal-entry">
+            <div className="meal-time">{mealTime.charAt(0).toUpperCase() + mealTime.slice(1)}</div>
+            <input 
+              type="text" 
+              placeholder="Meal"
+              value={meal} 
+              onChange={(e) => handleInputChange(mealTime, 'meal', e.target.value)} 
+              className="meal-input"
+            />
+            <select 
+              value={satiety} 
+              onChange={(e) => handleInputChange(mealTime, 'satiety', e.target.value)} 
+              className="satiety-input"
+            >
+              {[1, 2, 3, 4, 5].map(value => (
+                <option key={value} value={value}>{value}</option>
+              ))}
+            </select>
+          </div>
+        ))}
+      </div>
+      <button type="submit" className="submit-button">Submit</button>
+    </form>
+  );
+}
+
+function MealData({data, setData, pageUsername, date}) {
+  const formatDate = (date) => {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  const handleSubmit = async() => {
+    try{
+      const response = await axios.post('http://localhost:5000/deletemealentry', {username: pageUsername, date: formatDate(date)});
+      setData("");
+    } catch(error) {
+      console.error('Error:', error);
+    }
+  }
+
+  return (
+    <div>
+      <button onClick={handleSubmit} className='buttonStyle'>Delete Data</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Meal Time</th>
+            <th>Meal</th>
+            <th>Satiety Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.entries(data).map(([mealTime, { meal, satiety }]) => (
+            <tr key={mealTime}>
+              <td>{mealTime.charAt(0).toUpperCase() + mealTime.slice(1)}</td>
+              <td>{meal}</td>
+              <td>{satiety}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default function Daily({pageUsername}) {
+  const [value, onChange] = useState(new Date());
+  const [data, setData] = useState("");
+  const [buttonPressed, setButtonPressed] = useState(false);
+  const [outString, setOutString] = useState("");
+
+  const formatDate = (date) => {
+    const yyyy = date.getFullYear();
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const dd = String(date.getDate()).padStart(2, '0');
+    
+    return `${yyyy}-${mm}-${dd}`;
+  };
 
   const fetchData = async (date) => {
     try {
       console.log(formatDate(date));
+      setButtonPressed(false);
       const response = await axios.post('http://localhost:5000/getmealentry', { username: pageUsername, date: formatDate(date) });
       console.log(response.data[formatDate(date)][0]);
       setData(response.data[formatDate(date)][0]);
     } catch (error) {
       console.error('Error fetching data:', error);
       setData({});
+    }
+  };
+
+  const fetchDataPython = async () => {
+    try {
+      const responseDB = await axios.post('http://localhost:5000/getprofile', { username: pageUsername });
+      console.log(responseDB.data);
+
+      const response = await fetch('http://100.69.245.221:5000/callGPT', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({...data, ...responseDB.data})
+      });
+      const resp = await response.json();
+      setButtonPressed(true);
+      console.log(resp.message);
+      setOutString(resp.message);
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
   };
 
@@ -131,10 +190,10 @@ export default function Daily({pageUsername}) {
       />
       <div className="uniqueBoxContainer">
         <div className="uniqueBoxContent">
-          <p>ChatGPT TEXT GOES HERE</p>
+          {buttonPressed ? <p>{outString.replace(/"/g, '')}</p> : <button onClick={fetchDataPython}>Call GPT-4</button>}
         </div>
       </div>
-      <MealData data={data}/>
+      {data === undefined || Object.keys(data).length === 0  ? <MealEntryComponent pageUsername={pageUsername} date={value}/> : <MealData data={data} setData={setData} pageUsername={pageUsername} date={value}/>}
     </div>
   );
 }

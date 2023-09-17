@@ -78,7 +78,7 @@ app.post('/getprofile', async (req, res) => {
 
   const userProfile = await UserProfile.findOne({ username });
   if(userProfile){
-    res.json(userProfile);
+    return res.json(userProfile);
   } else {
     return res.status(404).json({ message: 'User not found' });
   }
@@ -156,15 +156,28 @@ app.post('/addmealentry', async (req, res) => {
     if (!userMeals.mealsByDate.has(date)) {
       userMeals.mealsByDate.set(date, []);
     }
-    
     userMeals.mealsByDate.get(date).push(mealEntry);
 
     await userMeals.save();
-    
-    res.status(200).json({ message: 'Meal entry added successfully' });
+
+    return res.status(200).json({ message: 'Meal entry added successfully' });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+
+app.post('/deletemealentry', async (req, res) => {
+  const {username, date} = req.body;
+  const userMeals = await UserMeals.findOne({ username });
+  if (!userMeals) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  
+  userMeals.mealsByDate.delete(date);
+
+  await userMeals.save();
+  
+  return res.json({message: 'entry deleted'});
 });
 
 app.post('/getmealentry', async (req, res) => {
