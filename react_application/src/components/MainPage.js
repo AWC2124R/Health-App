@@ -89,7 +89,7 @@ export default function MainPage({pageUsername, setCurrentPage}) {
             displayModule = <Settings setCurrentPage={setCurrentPage}/>;
             break;
         case 'PROFILE':
-            displayModule = <Profile />;
+            displayModule = <Profile pageUsername={pageUsername}/>;
         default:
             break;
     }

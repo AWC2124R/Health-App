@@ -1,0 +1,24 @@
+.json-list-container {
+    position: absolute;
+    top: 25vh;
+    left: 47vw;
+    width: 20vw;
+    padding: 20px;
+    background-color: #ebf2fa;
+    box-shadow: 10px 10px lightblue;
+  }
+  
+  .json-list-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .json-list-container ul li {
+    margin: 10px 0;
+    padding: 10px;
+  }
+  
+  .json-list-container ul li strong {
+    margin-right: 10px;
+  }
+  
