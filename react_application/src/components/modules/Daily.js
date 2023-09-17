@@ -190,7 +190,7 @@ export default function Daily({pageUsername}) {
       />
       <div className="uniqueBoxContainer">
         <div className="uniqueBoxContent">
-          {buttonPressed ? <p>{outString.replace(/"/g, '')}</p> : <button className='button-call-gpt' onClick={fetchDataPython}>Call GPT-4</button>}
+          {buttonPressed ? <p>{outString.replace(/"/g, '')}</p> : <button className='button-call-gpt' onClick={fetchDataPython}>GPT Assessment</button>}
         </div>
       </div>
       {data === undefined || Object.keys(data).length === 0  ? <MealEntryComponent pageUsername={pageUsername} date={value}/> : <MealData data={data} setData={setData} pageUsername={pageUsername} date={value}/>}

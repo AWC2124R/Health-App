@@ -25,7 +25,7 @@ body {
     width: var(--namecard-width);
     height: var(--namecard-height);
 
-    background: linear-gradient(-45deg, #AEE2FF, #B799FF);
+    background: rgb(121, 171, 188);
 }
 
 .logo {
@@ -73,7 +73,7 @@ body {
     padding: 5px;
 
     left: 1.75vw;
-    top: 9.5vw;
+    top: 8vw;
 
     width: calc(var(--namecard-width) - 1.75vw - 10px);
 
@@ -89,7 +89,7 @@ body {
     padding: 5px;
 
     left: 0;
-    top: 9.5vw;
+    top: 8vw;
 
     width: calc(var(--namecard-width) - 1.75vw - 10px);
 

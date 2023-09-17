@@ -1,0 +1,25 @@
+.button-container-settings {
+    position: absolute;
+    top: 45vh; /* Adjust as necessary */
+    left: 53vw; /* Adjust as necessary */
+    transform: translate(-50%, -50%); /* Centers the button based on its own size */
+  }
+  
+  .big-button {
+    position: absolute;
+    top: 0vh; /* Adjust as necessary */
+    left: 0vw; /* Adjust as necessary */
+    width: 10vw; /* Adjust as necessary */
+    height: 50px; /* Adjust as necessary */
+    background-color: #ebf2fa; /* Adjust as necessary */
+    color: black; /* Adjust as necessary */
+    border: none; /* Adjust as necessary */
+    font-size: 16px; /* Adjust as necessary */
+    cursor: pointer; /* Changes the cursor to a hand icon when hovering over the button */
+    box-shadow: 10px 10px lightblue;
+  }
+  
+  .big-button:hover {
+    background-color: #a5be00; /* Adjust as necessary */
+  }
+  

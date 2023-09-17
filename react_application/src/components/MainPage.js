@@ -43,7 +43,7 @@ function NameCard() {
             <img className='logo' alt='Logo' src={logo}></img>
     
             <div className='credit-container'>
-                <p className='credit'>© 2023 NAMES</p>
+                <p className='credit'></p>
             </div>
             
             <div className='date-time-container'>
@@ -71,7 +71,7 @@ function SelectionWindow({handleModuleChange}) {
     );
 }
 
-export default function MainPage({pageUsername}) {
+export default function MainPage({pageUsername, setCurrentPage}) {
     let displayModule = <Welcome />;
     const [currentModule, setCurrentModule] = useState('TDL');
 
@@ -86,7 +86,7 @@ export default function MainPage({pageUsername}) {
             displayModule = <Weekly />;
             break;
         case 'SETTINGS':
-            displayModule = <Settings />;
+            displayModule = <Settings setCurrentPage={setCurrentPage}/>;
             break;
         case 'PROFILE':
             displayModule = <Profile />;
