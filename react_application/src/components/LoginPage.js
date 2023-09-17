@@ -21,8 +21,8 @@ export default function LoginPage({setCurrentPage, setPageUsername}) {
             setPageUsername(username);
             
             const resProfile = await axios.post('http://localhost:5000/checkprofile', { username });
-
             const resLoggedIn = await axios.post('http://localhost:5000/checklogintoday', { username });
+            console.log(resLoggedIn.data.message);
             if(resProfile.data.message === 'Profile found.'){
                 if(resLoggedIn.data.message == true){
                     setCurrentPage('MP');

@@ -4,9 +4,7 @@ import axios from 'axios'
 
 import '../assets/styles/dailysurveypage_style.css'
 
-export default function DailySurveyPage() {
-    const [username, setUsername] = useState(''); // Add this line to hold the username
-    const [date, setDate] = useState(''); // Add this line to hold the date
+export default function DailySurveyPage({setCurrentPage, pageUsername}) {
     const [mealData, setMealData] = useState({
         breakfast: { meal: '', satiety: '1' },
         lunch: { meal: '', satiety: '1' },
@@ -26,31 +24,25 @@ export default function DailySurveyPage() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
-        // Create a data object to send in the POST request
+        
+        const date = new Date(); 
+        const dateString = date.toISOString().slice(0,10); 
+
         const data = {
-          username,
-          date,
-          meals: mealData,
+            username: pageUsername,
+            date: dateString,
+            mealData,
         };
     
         try {
-          // Make the POST request to the /addmealentry endpoint
-          const response = await fetch('http://localhost:5000/addmealentry', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-          });
-    
-          const responseData = await response.json();
-    
-          console.log(responseData);
+            const response = await axios.post('http://localhost:5000/addmealentry', data);
+            const responseLogin = await axios.post('http://localhost:5000/updatelogintoday', { username: pageUsername });
+
+            setCurrentPage('MP');
         } catch (error) {
-          console.error('Error:', error);
+            console.error('Error:', error);
         }
-      };
+    };
     
 
     return (

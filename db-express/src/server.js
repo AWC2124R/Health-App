@@ -56,7 +56,6 @@ app.post('/register', async (req, res) => {
   const newUserMeal = new UserMeals({ username: username });
 
   await newUser.save();
-
   await newUserMeal.save();
 
   return res.json({ message: 'User Registered.' });
@@ -117,8 +116,27 @@ app.post('/checklogintoday', async (req, res) => {
   try {
     const user = await UserLogin.findOne({ username });
     if (user) {
+      const today = new Date();
       const loggedInToday = hasLoggedInToday(user.lastLogin);
       return res.json({ message: loggedInToday });
+    } else {
+      return res.status(404).json({ message: 'User not found' });
+    }
+  } catch (error) {
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+app.post('/updatelogintoday', async (req, res) => {
+  const { username } = req.body;
+
+  try {
+    const user = await UserLogin.findOne({ username });
+    if (user) {
+      console.log("done");
+      user.lastLogin = new Date();
+      await user.save();
+      return res.json({ message: 'User Added'})
     } else {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -130,7 +148,7 @@ app.post('/checklogintoday', async (req, res) => {
 app.post('/addmealentry', async (req, res) => {
   try {
     const { username, date, mealEntry } = req.body;
-    
+
     const userMeals = await UserMeals.findOne({ username });
     if (!userMeals) {
       return res.status(404).json({ message: 'User not found' });

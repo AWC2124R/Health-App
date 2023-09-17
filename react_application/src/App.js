@@ -84,7 +84,7 @@ function Hub() {
       displayPage = <InitialSurveyPage setCurrentPage={setCurrentPage} pageUsername={pageUsername}/>;
       break;
     case 'DSP':
-      displayPage = <DailySurveyPage />;
+      displayPage = <DailySurveyPage setCurrentPage={setCurrentPage} pageUsername={pageUsername}/>;
       break;
     case 'MP':
       displayPage = <div>
