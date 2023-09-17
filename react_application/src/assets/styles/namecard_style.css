@@ -17,6 +17,10 @@
     --namecard-height: 15vw;
 }
 
+body {
+    background-color: #427AA1;
+}
+
 .namecard-background {
     width: var(--namecard-width);
     height: var(--namecard-height);

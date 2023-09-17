@@ -12,8 +12,9 @@
 
   width: 36.9vw;
   height: 47vh;
-  background-color: #c3c3c31c;
+  background-color: #ebf2fa;
   border: 0px;
+  box-shadow: 10px 10px lightblue;
 }
 
 .customCalendar .react-calendar__tile {
@@ -30,8 +31,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #c3c3c31c;
-  border: 0px solid #8e8e8e;
+  background-color: #ebf2fa;
+  box-shadow: 10px 10px lightblue;
 }
 
 .uniqueBoxContent {
@@ -47,34 +48,36 @@ table {
   top: 9vh;
   left: 25vw;
   height: 40vh;
-  width: 27vw;
+  width: 28.7vw;
   border-collapse: collapse;
   font-family: 'GEOMATRIX';
-  background-color: #ffffff;
+  background-color: #ebf2fa;
+  box-shadow: 10px 10px lightblue;
 }
 
 th, td {
-  border: 1px solid #838383;
+  border: 5px solid rgba(255, 255, 255, 0);
   padding: 8px;
   text-align: center;
-  background-color: #ffffff;
+  background-color: #ebf2fa;
 }
 
 th {
-  background-color: #ffffff;
+  background-color: #ebf2fa;
 }
 
 .meal-entry-form {
   position: absolute;
   top: 9vh;
   left: 25vw;
-  height: 40vh;
-  width: 25vw;
-  background-color: #c3c3c31c;
+  height: 33vh;
+  width: 24.94vw;
+  background-color: #ebf2fa; /* Soft background color */
   padding: 2em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 10px 10px lightblue;
 }
 
 .meal-entry-container {
@@ -87,7 +90,7 @@ th {
 .meal-entry {
   display: flex;
   align-items: center;
-  margin-bottom: 2.5em;
+  margin-bottom: 3.5em; /* Adjusted margin */
   width: 100%;
 }
 
@@ -95,49 +98,69 @@ th {
   margin-right: 1em;
   font-weight: bold;
   flex: 1;
+  color: #343a40; /* Slightly darker text color */
 }
 
 .meal-input,
 .satiety-input {
   margin: 0 0.5em;
   padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: none; /* Remove borders */
   width: 100px;
   flex: 2;
+  font-size: 0.9em; /* Consistent font size */
+  background-color: #ffffff; /* Background color to distinguish input area */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Inset shadow to add depth (optional) */
 }
 
 .meal-input::placeholder {
-  font-size: 0.9em;
-  color: #aaa;
+  color: #868e96; /* Modern placeholder color */
 }
 
 .submit-button {
-  padding: 0.5em 1em;
-  background-color: #c3c3c3c4;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
+  position: absolute;
+  top: 40vh; /* Adjust as necessary */
+  left: 0vw; /* Adjust as necessary */
+  width: 10vw; /* Adjust as necessary */
+  height: 50px; /* Adjust as necessary */
+  background-color: #ebf2fa; /* Adjust as necessary */
+  color: black; /* Adjust as necessary */
+  border: none; /* Adjust as necessary */
+  font-size: 16px; /* Adjust as necessary */
+  cursor: pointer; /* Changes the cursor to a hand icon when hovering over the button */
+  box-shadow: 10px 10px lightblue;
 }
 
-.submit-button:hover {
-  background-color: #b5b5b5;
+.submit-button:hover {  
+  background-color: #a5be00;
 }
 
 .buttonStyle {
   position: absolute;
-  top: 50vh; /* Adjust as necessary */
-  left: 32.7vw; /* Adjust as necessary */
+  top: 49vh; /* Adjust as necessary */
+  left: 25vw; /* Adjust as necessary */
   width: 10vw; /* Adjust as necessary */
   height: 50px; /* Adjust as necessary */
-  background-color: #9d9d9d; /* Adjust as necessary */
+  background-color: #f9baa3; /* Adjust as necessary */
+  color: black; /* Adjust as necessary */
+  border: none; /* Adjust as necessary */
+  font-size: 16px; /* Adjust as necessary */
+  cursor: pointer; /* Changes the cursor to a hand icon when hovering over the button */
+  box-shadow: 10px 10px #f7c2af;
+}
+
+.buttonStyle:hover {
+  background-color: #ffd8ca; /* Adjust as necessary; Darker shade for hover effect */
+}
+
+.button-call-gpt {
+  background-color: #679436; /* Adjust as necessary */
   color: white; /* Adjust as necessary */
   border: none; /* Adjust as necessary */
   font-size: 16px; /* Adjust as necessary */
   cursor: pointer; /* Changes the cursor to a hand icon when hovering over the button */
 }
 
-.buttonStyle:hover {
-  background-color: #828282; /* Adjust as necessary; Darker shade for hover effect */
+.button-call-gpt:hover {
+  background-color: #a5be00; /* Adjust as necessary; Darker shade for hover effect */
 }

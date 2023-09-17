@@ -1,41 +1,37 @@
 @font-face {
-    font-family: 'GEOMATRIX';
-    src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
-         url('../fonts/GEOMATRIX.woff') format('woff'),
-         url('../fonts/GEOMATRIX.woff2') format('woff2');
-  }
-  
-  .body-welcome-page,
-  .html-welcome-page {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .body-welcome-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
-  }
-  
-  .html-welcome-page {
-    font-family: 'GEOMATRIX', sans-serif;
-  }
-  
-  .container-welcome-page {
-    background-color: #fff;
-    width: 100%;
-    height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .text-welcome-page {
-    background-color: rgba(169, 169, 169, 0.231);
-    padding: 20px 40px;
-    font-size: 2rem;
-    text-align: center;
-  }
+  font-family: 'GEOMATRIX';
+  src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
+        url('../fonts/GEOMATRIX.woff') format('woff'),
+        url('../fonts/GEOMATRIX.woff2') format('woff2');
+}
+
+.textContainer {
+  position: absolute;
+  top: 50vh; /* Adjust as necessary */
+  left: 59vw; /* Adjust as necessary */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  transform: translate(-50%, -50%); /* Ensures that the container is centered based on its own size */
+  background-color: #ebf2fa;
+  box-shadow: 10px 10px lightblue;
+}
+
+.textInstance {
+  font-size: 16px; /* Adjust as necessary */
+  margin: 20px;
+  margin-bottom: 35px; /* Adjust spacing between texts */
+  text-align: center; /* Ensures text within each instance is centered */
+  width: 50vw; /* Fixed width for each text instance */
+}
+
+.title {
+  font-size: 5vw;
+  font-family: 'GEOMATRIX';
+}
+
+.description {
+  font-size: 1.30vw;
+  line-height: 3vw;
+}
