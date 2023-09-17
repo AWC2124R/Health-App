@@ -1,0 +1,42 @@
+@font-face {
+    font-family: 'GEOMATRIX';
+    src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
+         url('../fonts/GEOMATRIX.woff') format('woff'),
+         url('../fonts/GEOMATRIX.woff2') format('woff2');
+  }
+  
+  .body-welcome-page,
+  .html-welcome-page {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .body-welcome-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+  }
+  
+  .html-welcome-page {
+    font-family: 'GEOMATRIX', sans-serif;
+  }
+  
+  .container-welcome-page {
+    background-color: #fff;
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text-welcome-page {
+    background-color: rgba(169, 169, 169, 0.272);
+    padding: 20px 40px;
+    border-radius: 25px;
+    font-size: 2rem;
+    text-align: center;
+  }

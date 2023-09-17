@@ -1,6 +1,9 @@
+import './../../assets/styles/welcomepage_style.css'
+
 export default function Welcome() {
-    return (
-      <>
-      </>
-    );
+  return (
+    <div className="container-welcome-page">
+      <p className="text-welcome-page">placeholder</p>
+    </div>
+  );  
 }

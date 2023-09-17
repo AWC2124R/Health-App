@@ -48,12 +48,6 @@ const UserProfileSchema = new mongoose.Schema({
   },
 });
 
-const MealSchema = new mongoose.Schema({
-  mealType: { type: String, required: true },
-  meal: { type: String, required: true },
-  satiety: { type: Number, required: true, min: 1, max: 5 },
-});
-
 const UserMealsSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -62,7 +56,6 @@ const UserMealsSchema = new mongoose.Schema({
   },
   mealsByDate: {
     type: Map,
-    of: [MealSchema],
     default: {}
   },
 });

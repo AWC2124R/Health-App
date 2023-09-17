@@ -22,16 +22,24 @@ export default function DailySurveyPage({setCurrentPage, pageUsername}) {
     });
     };
 
+    const formatDate = (date) => {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-11, hence adding 1
+        const dd = String(date.getDate()).padStart(2, '0');
+        
+        return `${yyyy}-${mm}-${dd}`;
+    };
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         
         const date = new Date(); 
-        const dateString = date.toISOString().slice(0,10); 
+        const dateString = formatDate(date);
 
         const data = {
             username: pageUsername,
             date: dateString,
-            mealData,
+            mealEntry: mealData,
         };
     
         try {
@@ -77,4 +85,4 @@ export default function DailySurveyPage({setCurrentPage, pageUsername}) {
         </div>
     </div>
     );
-}
+}   

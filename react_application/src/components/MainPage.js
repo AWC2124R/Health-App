@@ -71,7 +71,7 @@ function SelectionWindow({handleModuleChange}) {
     );
 }
 
-export default function MainPage() {
+export default function MainPage({pageUsername}) {
     let displayModule = <Welcome />;
     const [currentModule, setCurrentModule] = useState('TDL');
 
@@ -80,7 +80,7 @@ export default function MainPage() {
             displayModule = <Welcome />;
             break;
         case 'DAILY REVIEW':
-            displayModule = <Daily />;
+            displayModule = <Daily pageUsername={pageUsername} />;
             break;
         case 'WEEKLY REVIEW':
             displayModule = <Weekly />;

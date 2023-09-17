@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'GEOMATRIX';
+  src: url('../fonts/GEOMATRIX.ttf') format('truetype'),
+       url('../fonts/GEOMATRIX.woff') format('woff'),
+       url('../fonts/GEOMATRIX.woff2') format('woff2');
+}
+
+.customCalendar {
+  position: absolute;
+  top: 9vh;
+  left: 48vw;
+
+  width: 45vw;
+  height: 47vh;
+}
+
+.customCalendar .react-calendar__tile {
+  width: 70px;
+  height: 7vh;
+}
+
+.uniqueBoxContainer {
+  position: absolute;
+  top: 60vh; /* Adjust the value as necessary */
+  left: 25vw; /* Adjust the value as necessary */
+  width: 67.8vw; /* Adjustable width */
+  height: 30vh; /* Adjustable height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #8e8e8e;
+}
+
+.uniqueBoxContent {
+  font-family: 'Arial, sans-serif';
+  font-size: 2vh; /* Adjustable font size */
+  color: #333;
+  text-align: center;
+  font-family: 'GEOMATRIX'
+}
+
+table {
+  position: absolute;
+  top: 9vh;
+  left: 25vw;
+  height: 47vh;
+  width: 20vw;
+  border-collapse: collapse;
+  font-family: 'GEOMATRIX';
+  background-color: #ffffff;
+}
+
+th, td {
+  border: 1px solid #838383;
+  padding: 8px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+th {
+  background-color: #ffffff;
+}

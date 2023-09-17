@@ -88,7 +88,7 @@ function Hub() {
       break;
     case 'MP':
       displayPage = <div>
-                     <MainPage />
+                     <MainPage pageUsername={pageUsername} />
                     </div>;
       break;
     default:

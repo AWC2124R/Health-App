@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const cors = require('cors');
-const {UserLogin, UserProfile, UserMeals} = require('./Models/user'); 
+const {UserLogin, UserProfile, UserMeals} = require('./models/user'); 
 const bcrypt = require('bcrypt');
 
 require('dotenv').config();
@@ -133,7 +133,6 @@ app.post('/updatelogintoday', async (req, res) => {
   try {
     const user = await UserLogin.findOne({ username });
     if (user) {
-      console.log("done");
       user.lastLogin = new Date();
       await user.save();
       return res.json({ message: 'User Added'})
@@ -157,7 +156,7 @@ app.post('/addmealentry', async (req, res) => {
     if (!userMeals.mealsByDate.has(date)) {
       userMeals.mealsByDate.set(date, []);
     }
-
+    
     userMeals.mealsByDate.get(date).push(mealEntry);
 
     await userMeals.save();
@@ -166,6 +165,15 @@ app.post('/addmealentry', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+});
+
+app.post('/getmealentry', async (req, res) => {
+  const { username, date } = req.body;
+  const userMeals = await UserMeals.findOne({ username });
+  if (!userMeals) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+  return res.json(userMeals.mealsByDate);
 });
 
 // User.collection.drop()
